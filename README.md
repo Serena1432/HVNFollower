@@ -12,3 +12,5 @@ It's very simple, just download the project and open it in Visual Studio 2008 or
 
 ## About the Android version
 On Feb 26, 2020, I made the Android version of this software. But instead of making in C#, I decided to make it in JavaScript and using PhoneGap to build it in Android (because my computer isn't capable to run Android Studio).
+
+You can see the Android version [here](https://github.com/LilShieru/HVNFollower-Android/).
