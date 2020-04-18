@@ -1,7 +1,7 @@
 # HVNFollower
 Follow every Uploader, Author, Doujinshi and Group on HentaiVN!
 
-** Note: This software is Vietnamese Only! **
+**Note: This software is Vietnamese Only!**
 
 ## Information
 This software is written by LilShieru with the purposes to follow every Uploader, Author, Doujinshi and Group on HentaiVN.
