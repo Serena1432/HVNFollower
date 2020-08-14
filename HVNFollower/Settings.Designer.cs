@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -51,7 +49,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(300, 8);
+            this.numericUpDown1.Location = new System.Drawing.Point(384, 8);
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -78,7 +76,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(366, 41);
+            this.checkBox1.Location = new System.Drawing.Point(453, 40);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 3;
@@ -86,7 +84,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(296, 103);
+            this.button1.Location = new System.Drawing.Point(381, 98);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(87, 25);
             this.button1.TabIndex = 4;
@@ -94,20 +92,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Olive;
-            this.label3.Location = new System.Drawing.Point(14, 131);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(365, 56);
-            this.label3.TabIndex = 5;
-            this.label3.Text = resources.GetString("label3.Text");
-            // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(366, 70);
+            this.checkBox2.Location = new System.Drawing.Point(453, 69);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(15, 14);
             this.checkBox2.TabIndex = 7;
@@ -127,10 +115,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 197);
+            this.ClientSize = new System.Drawing.Size(483, 136);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label2);
@@ -157,7 +144,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label4;
     }

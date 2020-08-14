@@ -110,3 +110,6 @@ C:\Users\Shieru\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-001\
 E:\Users\Administrator\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-001\HVNFollower\bin\Debug\HVN Follower.exe.config
 E:\Users\Administrator\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-001\HVNFollower\bin\Debug\HtmlAgilityPack.dll
 D:\vào cop nhạc\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-001\HVNFollower\bin\Debug\HVN Follower.exe.config
+C:\Users\Nico\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-001\HVNFollower\bin\Debug\HVN Follower.exe.config
+C:\Users\Nico\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-001\HVNFollower\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Nico\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-001\HVNFollower\obj\Debug\HVNFollower.Export.resources

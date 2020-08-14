@@ -22,10 +22,14 @@ namespace HVNFollower
 {
     public partial class Form1 : Form
     {
+        string v = "1.10.1";
         private static Form1 _instance;
         public int notiEnabled = 0;
         bool exit = false, noticed = false;
         string option = "chuthot", version;
+        string ping = "Chưa có";
+        bool pingNotified = false;
+        long pingTimestamp;
         public Form1()
         {
             AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
@@ -65,13 +69,14 @@ namespace HVNFollower
 
         string img, name, hhimg, hh, tvnhom, gt, date, cmt, like, yen, mota, link;
         string currentUser, currentUserName, currentTacgia, currentUpdate, currentTacgiaName = "Không rõ", currentDoujin, currentDoujinName = "Không rõ", currentGroup, currentUserLink, currentTacgiaLink, currentDoujinLink, currentGroupLink, currentGroupName = "Không rõ";
-        bool broken, checkip, checkedip, checkipfailed, notified, chuthot;
+        bool broken, checkip, checkedip = false, checkipfailed, notified, chuthot;
         string tac_gia_2, usr_string, tg_string, doujin_string, group_string;
         int i = -1, imax, itacgia = -1, itacgiamax = 0, idoujin = -1, idoujinmax = 0, igroup = -1, igroupmax;
         Random rnd = new Random();
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Text = "HVN Follower v" + v + " by LilShieru";
             File.WriteAllBytes(Application.StartupPath + "\\HtmlAgilityPack.dll", Properties.Resources.HtmlAgilityPack);
             Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower");
             if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp"))
@@ -121,9 +126,10 @@ namespace HVNFollower
                             status.Text = "Hiện tại bên HentaiVN không yêu cầu check IP. Bạn đã có thể tiếp tục.";
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
-
+                        timer4.Enabled = false;
+                        MessageBox.Show("Có lỗi đã xảy ra với HVN Follower. Vui lòng báo cáo cho LilShieru để tiếp tục.\n\nThông tin lỗi:\n" + ex.ToString(), "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -672,6 +678,8 @@ namespace HVNFollower
                 try
                 {
                     usr_string = client.DownloadString("https://hentaivn.net/user-" + currentUser + "?rand=" + rnd.Next(100000000, 999999999));
+                    long pingTime = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).Ticks / TimeSpan.TicksPerMillisecond) - pingTimestamp;
+                    ping = pingTime.ToString() + "ms";
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(usr_string);
                     var itemList = doc.DocumentNode.SelectNodes("//div[@class='box-description']//h2")
@@ -768,6 +776,8 @@ namespace HVNFollower
                 try
                 {
                     doujin_string = client.DownloadString("https://hentaivn.net/tim-kiem-doujinshi.html?key=" + currentDoujin + "&rand=" + rnd.Next(100000000, 999999999));
+                    long pingTime = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).Ticks / TimeSpan.TicksPerMillisecond) - pingTimestamp;
+                    ping = pingTime.ToString() + "ms";
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(doujin_string);
                     var itemList = doc.DocumentNode.SelectNodes("//div[@class='box-description']")
@@ -832,6 +842,8 @@ namespace HVNFollower
                 try
                 {
                     group_string = client.DownloadString("https://hentaivn.net/g/" + currentGroup);
+                    long pingTime = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).Ticks / TimeSpan.TicksPerMillisecond) - pingTimestamp;
+                    ping = pingTime.ToString() + "ms";
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(group_string);
                     var itemList = doc.DocumentNode.SelectNodes("//div[@class='box-description']")
@@ -896,6 +908,8 @@ namespace HVNFollower
                 try
                 {
                     tg_string = client.DownloadString("https://hentaivn.net/tacgia=" + currentTacgia + ".html" + "?rand=" + rnd.Next(100000000, 999999999));
+                    long pingTime = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).Ticks / TimeSpan.TicksPerMillisecond) - pingTimestamp;
+                    ping = pingTime.ToString() + "ms";
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(tg_string);
                     var itemList = doc.DocumentNode.SelectNodes("//div[@class='box-description']")
@@ -954,6 +968,14 @@ namespace HVNFollower
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+            pingTimestamp = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).Ticks / TimeSpan.TicksPerMillisecond;
+            this.Text = "HVN Follower v" + v + " by LilShieru | Ping: " + ping;
+            if (ping.Contains("ms") && Convert.ToInt32(ping.Substring(0, ping.Length - 2)) > timer2.Interval && !pingNotified)
+            {
+                notifyIcon1.BalloonTipText = "Ping từ máy chủ HentaiVN đang lớn hơn thời gian cập nhật của app, điều này có thể gây ra lỗi. Vui lòng thay đổi lại thời gian cập nhật.";
+                notifyIcon1.ShowBalloonTip(10000);
+                pingNotified = true;
+            }
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\TimerInterval.settings"))
             {
                 timer2.Interval = Convert.ToInt32(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\TimerInterval.settings")) * 1000;
@@ -1014,11 +1036,26 @@ namespace HVNFollower
                     UpdateGroupAsync(currentGroup, currentGroupName);
                 }
             }
+            else if (rk.GetValueNames().Count() != 0 && rk4.GetValueNames().Count() == 0)
+            {
+                imax = rk.GetValueNames().Count();
+                if (i < imax)
+                {
+                    i++;
+                }
+                if (i == imax)
+                {
+                    i = 0;
+                }
+                    currentUser = rk.GetValueNames()[i].ToString();
+                    currentUserName = rk.GetValue(rk.GetValueNames()[i].ToString(), "Không rõ").ToString();
+                    GetUsrDataAsync(currentUser, currentUserName);
+            }
             
             RegistryKey rk2 = Registry.CurrentUser.CreateSubKey("SOFTWARE\\LilShieru\\HVNFollower\\Authors");
             RegistryKey rk3 = Registry.CurrentUser.CreateSubKey("SOFTWARE\\LilShieru\\HVNFollower\\Doujins");
             int tg_doujin = rk2.GetValueNames().Count() + rk3.GetValueNames().Count();
-            if (rk2.GetValueNames().Count() != 0 && rk.GetValueNames().Count() != 0 && rk3.GetValueNames().Count() != 0)
+            if (rk2.GetValueNames().Count() != 0 && rk.GetValueNames().Count() != 0 && rk3.GetValueNames().Count() != 0 && rk4.GetValueNames().Count() != 0)
             {
                 itacgiamax = rk2.GetValueNames().Count() + rk3.GetValueNames().Count();
                 itacgia++;
@@ -1050,6 +1087,32 @@ namespace HVNFollower
                     {
                         status.Text = "Đang cập nhật Nhóm dịch " + currentGroupName + " và Doujinshi " + currentDoujinName + "...";
                     }
+                    UpdateDoujinAsync(currentDoujin, currentDoujinName);
+                }
+                if (itacgia == itacgiamax - 1)
+                {
+                    itacgia = -1;
+                }
+
+            }
+            else if (rk2.GetValueNames().Count() != 0 && rk.GetValueNames().Count() != 0 && rk3.GetValueNames().Count() != 0 && rk4.GetValueNames().Count() == 0)
+            {
+                itacgiamax = rk2.GetValueNames().Count() + rk3.GetValueNames().Count();
+                itacgia++;
+                if (itacgia <= itacgiamax - 1 - rk3.GetValueNames().Count())
+                {
+                    currentTacgia = rk2.GetValueNames()[itacgia].ToString();
+                    currentTacgiaName = currentTacgia.Replace("+", " ");
+                        status.Text = "Đang cập nhật Chủ thớt " + currentUserName + " và Tác giả " + currentTacgiaName + "...";
+                    UpdateAuthorAsync(currentTacgia, currentTacgiaName);
+
+                }
+                else if (itacgia >= itacgiamax - 1 - rk3.GetValueNames().Count())
+                {
+                    idoujin = itacgia - rk2.GetValueNames().Count();
+                    currentDoujin = rk3.GetValueNames()[idoujin].ToString();
+                    currentDoujinName = currentDoujin.Replace("+", " ");
+                        status.Text = "Đang cập nhật Chủ thớt " + currentUserName + " và Doujinshi " + currentDoujinName + "...";
                     UpdateDoujinAsync(currentDoujin, currentDoujinName);
                 }
                 if (itacgia == itacgiamax - 1)
@@ -1223,9 +1286,10 @@ namespace HVNFollower
                                 status.Text = "Hiện tại bên HentaiVN không yêu cầu check IP. Bạn đã có thể tiếp tục.";
                             }
                         }
-                        catch
+                        catch (Exception ex)
                         {
-
+                            timer4.Enabled = false;
+                            MessageBox.Show("Có lỗi đã xảy ra với HVN Follower. Vui lòng báo cáo cho LilShieru để tiếp tục.\n\nThông tin lỗi:\n" + ex.ToString(), "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -1248,9 +1312,10 @@ namespace HVNFollower
                             noticed = true;
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
-
+                        timer4.Enabled = false;
+                        MessageBox.Show("Có lỗi đã xảy ra với HVN Follower. Vui lòng báo cáo cho LilShieru để tiếp tục.\n\nThông tin lỗi:\n" + ex.ToString(), "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

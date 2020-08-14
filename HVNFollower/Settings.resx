@@ -117,10 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label3.Text" xml:space="preserve">
-    <value>* Lưu ý: "Thời gian cập nhật" ở đây là thời gian cập nhật cho mỗi
-Chủ thớt trong 1 lần, tức là tổng thời gian cập nhật mỗi lần là
-Số giây x số chủ thớt. Mình vốn làm như thế để giảm thiểu lag
-cho app. Mong các bạn thông cảm!</value>
-  </data>
 </root>
