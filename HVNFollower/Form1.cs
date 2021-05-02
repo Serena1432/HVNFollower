@@ -22,7 +22,7 @@ namespace HVNFollower
 {
     public partial class Form1 : Form
     {
-        string v = "1.10.1";
+        string v = "1.10.2";
         private static Form1 _instance;
         public int notiEnabled = 0;
         bool exit = false, noticed = false;
@@ -100,7 +100,7 @@ namespace HVNFollower
                 {
                     try
                     {
-                        string s = client.DownloadString("https://hentaivn.net/user-108808");
+                        string s = client.DownloadString("https://hentaivn.tv/user-108808");
                         if (s.Contains("before accessing"))
                         {
                             if (!notified)
@@ -219,15 +219,15 @@ namespace HVNFollower
             {
                 if (notifyIcon1.BalloonTipText.Contains("Chủ thớt"))
                 {
-                    System.Diagnostics.Process.Start("https://hentaivn.net/user-" + currentUserLink);
+                    System.Diagnostics.Process.Start("https://hentaivn.tv/user-" + currentUserLink);
                 }
                 else if (notifyIcon1.BalloonTipText.Contains("Tác giả"))
                 {
-                    System.Diagnostics.Process.Start("https://hentaivn.net/tacgia=" + currentTacgiaLink + ".html");
+                    System.Diagnostics.Process.Start("https://hentaivn.tv/tacgia=" + currentTacgiaLink + ".html");
                 }
                 else if (notifyIcon1.BalloonTipText.Contains("Doujinshi"))
                 {
-                    System.Diagnostics.Process.Start("https://hentaivn.net/tim-kiem-doujinshi.html?key=" + currentDoujinLink);
+                    System.Diagnostics.Process.Start("https://hentaivn.tv/tim-kiem-doujinshi.html?key=" + currentDoujinLink);
                 }
                 else if (notifyIcon1.BalloonTipText.Contains("thông báo"))
                 {
@@ -236,7 +236,7 @@ namespace HVNFollower
                 }
                 else if (notifyIcon1.BalloonTipText.Contains("phiên bản mới"))
                 {
-                    System.Diagnostics.Process.Start("https://hentaivn.net/forum/t33003-hvn-follower-app-theo-doi-cac-chu-thot-va-se-co-nhieu-thu-khac-tren-hentaivn.html");
+                    System.Diagnostics.Process.Start("https://hentaivn.tv/forum/t33003-hvn-follower-app-theo-doi-cac-chu-thot-va-se-co-nhieu-thu-khac-tren-hentaivn.html");
                 }
             }
         }
@@ -313,10 +313,10 @@ namespace HVNFollower
             {
                 status.Text = "Tên Doujinshi không được để trống!";
             }
-            else if (textBox1.Text.Contains("hentaivn.net/forum/user-") && comboBox1.Text == "Thêm Chủ thớt")
+            else if (textBox1.Text.Contains("hentaivn.tv/forum/user-") && comboBox1.Text == "Thêm Chủ thớt")
             {
                 status.Text = "Đang chuyển hướng sang link Chủ thớt bên Cổng truyện...";
-                textBox1.Text = "https://hentaivn.net/user-" + textBox1.Text.Substring(textBox1.Text.IndexOf("-") + 1);
+                textBox1.Text = "https://hentaivn.tv/user-" + textBox1.Text.Substring(textBox1.Text.IndexOf("-") + 1);
                 checkip = false;
                 broken = false;
                 textBox1.Enabled = false;
@@ -326,7 +326,7 @@ namespace HVNFollower
                 webBrowser1.Navigate(textBox1.Text + "?rand=" + rnd.Next(100000000, 999999999));
                 option = "chuthot";
             }
-            else if (!textBox1.Text.Contains("hentaivn.net/user-") && comboBox1.Text == "Thêm Chủ thớt")
+            else if (!textBox1.Text.Contains("hentaivn.tv/user-") && comboBox1.Text == "Thêm Chủ thớt")
             {
                 status.Text = "Định dạng link không hợp lệ!";
             }
@@ -353,7 +353,7 @@ namespace HVNFollower
                 button1.Enabled = false;
                 status.Text = "Đang khởi động...";
                 status.Text = "Đang lấy thông tin...";
-                webBrowser1.Navigate("https://hentaivn.net/tacgia=" + tac_gia + ".html?rand=" + rnd.Next(100000000, 999999999));
+                webBrowser1.Navigate("https://hentaivn.tv/tacgia=" + tac_gia + ".html?rand=" + rnd.Next(100000000, 999999999));
                 option = "tacgia";
             }
             else if (comboBox1.Text == "Thêm Doujinshi" && textBox1.Text.Contains("://"))
@@ -368,7 +368,7 @@ namespace HVNFollower
                 button1.Enabled = false;
                 status.Text = "Đang khởi động...";
                 status.Text = "Đang lấy thông tin...";
-                webBrowser1.Navigate("https://hentaivn.net/tim-kiem-doujinshi.html?key=" + Uri.EscapeDataString(doujin) + "&rand=" + rnd.Next(100000000, 999999999));
+                webBrowser1.Navigate("https://hentaivn.tv/tim-kiem-doujinshi.html?key=" + Uri.EscapeDataString(doujin) + "&rand=" + rnd.Next(100000000, 999999999));
                 option = "doujinshi";
             }
             else if (comboBox1.Text == "Thêm Nhóm dịch" && textBox1.Text.Contains("://"))
@@ -677,7 +677,7 @@ namespace HVNFollower
                 client.Encoding = Encoding.UTF8;
                 try
                 {
-                    usr_string = client.DownloadString("https://hentaivn.net/user-" + currentUser + "?rand=" + rnd.Next(100000000, 999999999));
+                    usr_string = client.DownloadString("https://hentaivn.tv/user-" + currentUser + "?rand=" + rnd.Next(100000000, 999999999));
                     long pingTime = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).Ticks / TimeSpan.TicksPerMillisecond) - pingTimestamp;
                     ping = pingTime.ToString() + "ms";
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
@@ -698,7 +698,7 @@ namespace HVNFollower
                         string src = img.GetAttributeValue("src", "nothing");
                         if (!src.Contains("https://"))
                         {
-                            src = "https://hentaivn.net" + src;
+                            src = "https://hentaivn.tv" + src;
                         }
                         var newUserName = doc.DocumentNode.SelectNodes("//div[@class='wall-name']//h2").Select(p => p.InnerText).ToList()[0];
                         try
@@ -721,7 +721,7 @@ namespace HVNFollower
                                     notifyIcon1.ShowBalloonTip(10000);
                                 }
                                 string noti_text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp").Substring(2);
-                                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"Chủ thớt " + currentUserName + " vừa ra truyện mới \'" + truyen_list + "\', vào xem nhanh kẻo muộn nào!\",\"href\":\"https://hentaivn.net/user-" + currentUserLink + "\",\"isread\":false},{" + noti_text);
+                                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"Chủ thớt " + currentUserName + " vừa ra truyện mới \'" + truyen_list + "\', vào xem nhanh kẻo muộn nào!\",\"href\":\"https://hentaivn.tv/user-" + currentUserLink + "\",\"isread\":false},{" + noti_text);
                                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\" + currentUser + ".tmp", truyen_list);
                                 int notis = Convert.ToInt32(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp")) + 1;
                                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp", notis.ToString());
@@ -742,7 +742,7 @@ namespace HVNFollower
                             }
                             File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\" + currentUser + ".tmp", truyen_list);
                             string noti_text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp").Substring(2);
-                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"Chủ thớt " + currentUserName + " đã đổi tên hiển thị thành " + newUserName + ", hãy ghi nhớ để tránh nhầm lẫn về sau!\",\"href\":\"https://hentaivn.net/user-" + currentUserLink + "\",\"isread\":false},{" + noti_text);
+                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"Chủ thớt " + currentUserName + " đã đổi tên hiển thị thành " + newUserName + ", hãy ghi nhớ để tránh nhầm lẫn về sau!\",\"href\":\"https://hentaivn.tv/user-" + currentUserLink + "\",\"isread\":false},{" + noti_text);
                             int notis = Convert.ToInt32(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp")) + 1;
                             File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp", notis.ToString());
                             RegistryKey rkusr = Registry.CurrentUser.CreateSubKey("SOFTWARE\\LilShieru\\HVNFollower");
@@ -775,7 +775,7 @@ namespace HVNFollower
                 client.Encoding = Encoding.UTF8;
                 try
                 {
-                    doujin_string = client.DownloadString("https://hentaivn.net/tim-kiem-doujinshi.html?key=" + currentDoujin + "&rand=" + rnd.Next(100000000, 999999999));
+                    doujin_string = client.DownloadString("https://hentaivn.tv/tim-kiem-doujinshi.html?key=" + currentDoujin + "&rand=" + rnd.Next(100000000, 999999999));
                     long pingTime = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).Ticks / TimeSpan.TicksPerMillisecond) - pingTimestamp;
                     ping = pingTime.ToString() + "ms";
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
@@ -804,7 +804,7 @@ namespace HVNFollower
                                 }
                                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\" + Uri.EscapeDataString(currentDoujin) + ".tmp", doujin_truyen_list);
                                 string noti_text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp").Substring(2);
-                                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"Doujinshi " + currentDoujinName + " vừa có truyện mới \'" + doujin_truyen_list + "\', vào xem nhanh kẻo muộn nào!\",\"href\":\"https://hentaivn.net/tim-kiem-doujinshi.html?key=" + Uri.EscapeDataString(currentDoujinLink) + "\",\"isread\":false},{" + noti_text);
+                                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"Doujinshi " + currentDoujinName + " vừa có truyện mới \'" + doujin_truyen_list + "\', vào xem nhanh kẻo muộn nào!\",\"href\":\"https://hentaivn.tv/tim-kiem-doujinshi.html?key=" + Uri.EscapeDataString(currentDoujinLink) + "\",\"isread\":false},{" + noti_text);
                                 int notis = Convert.ToInt32(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp")) + 1;
                                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp", notis.ToString());
                             }
@@ -841,7 +841,7 @@ namespace HVNFollower
                 client.Encoding = Encoding.UTF8;
                 try
                 {
-                    group_string = client.DownloadString("https://hentaivn.net/g/" + currentGroup);
+                    group_string = client.DownloadString("https://hentaivn.tv/g/" + currentGroup);
                     long pingTime = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).Ticks / TimeSpan.TicksPerMillisecond) - pingTimestamp;
                     ping = pingTime.ToString() + "ms";
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
@@ -870,7 +870,7 @@ namespace HVNFollower
                                 }
                                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\" + Uri.EscapeDataString(currentGroup) + ".tmp", group_truyen_list);
                                 string noti_text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp").Substring(2);
-                                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"Nhóm dịch " + currentGroupName + " vừa có truyện mới \'" + group_truyen_list + "\', vào xem nhanh kẻo muộn nào!\",\"href\":\"https://hentaivn.net/tim-kiem-Nhóm dịch.html?key=" + Uri.EscapeDataString(currentGroupLink) + "\",\"isread\":false},{" + noti_text);
+                                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"Nhóm dịch " + currentGroupName + " vừa có truyện mới \'" + group_truyen_list + "\', vào xem nhanh kẻo muộn nào!\",\"href\":\"https://hentaivn.tv/tim-kiem-Nhóm dịch.html?key=" + Uri.EscapeDataString(currentGroupLink) + "\",\"isread\":false},{" + noti_text);
                                 int notis = Convert.ToInt32(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp")) + 1;
                                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp", notis.ToString());
                             }
@@ -907,7 +907,7 @@ namespace HVNFollower
                 client.Encoding = Encoding.UTF8;
                 try
                 {
-                    tg_string = client.DownloadString("https://hentaivn.net/tacgia=" + currentTacgia + ".html" + "?rand=" + rnd.Next(100000000, 999999999));
+                    tg_string = client.DownloadString("https://hentaivn.tv/tacgia=" + currentTacgia + ".html" + "?rand=" + rnd.Next(100000000, 999999999));
                     long pingTime = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).Ticks / TimeSpan.TicksPerMillisecond) - pingTimestamp;
                     ping = pingTime.ToString() + "ms";
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
@@ -936,7 +936,7 @@ namespace HVNFollower
                                 }
                                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\" + currentTacgia + ".tmp", tg_truyen_list);
                                 string noti_text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp").Substring(2);
-                                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"Tác giả " + currentTacgiaName + " vừa ra truyện mới \'" + tg_truyen_list + "\', vào xem nhanh kẻo muộn nào!\",\"href\":\"https://hentaivn.net/tacgia=" + currentTacgiaLink + ".html\",\"isread\":false},{" + noti_text);
+                                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"Tác giả " + currentTacgiaName + " vừa ra truyện mới \'" + tg_truyen_list + "\', vào xem nhanh kẻo muộn nào!\",\"href\":\"https://hentaivn.tv/tacgia=" + currentTacgiaLink + ".html\",\"isread\":false},{" + noti_text);
                                 int notis = Convert.ToInt32(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp")) + 1;
                                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp", notis.ToString());
                             }
@@ -1173,7 +1173,7 @@ namespace HVNFollower
         {
             if (comboBox1.Text == "Thêm Chủ thớt")
             {
-                textBox1.Text = "https://hentaivn.net/user-108808";
+                textBox1.Text = "https://hentaivn.tv/user-108808";
             }
             else if (comboBox1.Text == "Thêm Tác giả")
             {
@@ -1226,7 +1226,7 @@ namespace HVNFollower
         {
             if (comboBox1.Text == "Thêm Chủ thớt")
             {
-                label1.Text = "Nhập Link User của chủ thớt (https://hentaivn.net/user-xxxxx):";
+                label1.Text = "Nhập Link User của chủ thớt (https://hentaivn.tv/user-xxxxx):";
             }
             else if (comboBox1.Text == "Thêm Tác giả")
             {
@@ -1260,7 +1260,7 @@ namespace HVNFollower
                     {
                         try
                         {
-                            string s = client.DownloadString("https://hentaivn.net/user-108808");
+                            string s = client.DownloadString("https://hentaivn.tv/user-108808");
                             if (s.Contains("before accessing"))
                             {
                                 if (!notified)
@@ -1304,7 +1304,7 @@ namespace HVNFollower
                         if (s != version)
                         {
                             string noti_text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp").Substring(2);
-                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"HVN Follower đã có phiên bản mới, vào trang của app tại forum HVN để cập nhật nhé!\",\"href\":\"https://hentaivn.net/forum/t33003-hvn-follower-app-theo-doi-cac-chu-thot-va-se-co-nhieu-thu-khac-tren-hentaivn.html\",\"isread\":false},{" + noti_text);
+                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\History.tmp", "[{\"time\":\"" + DateTime.Now.ToString() + "\",\"text\":\"HVN Follower đã có phiên bản mới, vào trang của app tại forum HVN để cập nhật nhé!\",\"href\":\"https://hentaivn.tv/forum/t33003-hvn-follower-app-theo-doi-cac-chu-thot-va-se-co-nhieu-thu-khac-tren-hentaivn.html\",\"isread\":false},{" + noti_text);
                             notifyIcon1.BalloonTipText = "HVN Follower đã có phiên bản mới, vào trang của app tại forum HVN để cập nhật nhé!";
                             notifyIcon1.ShowBalloonTip(5000);
                             int notis = Convert.ToInt32(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LilShieru\\HVNFollower\\Notifications.tmp")) + 1;

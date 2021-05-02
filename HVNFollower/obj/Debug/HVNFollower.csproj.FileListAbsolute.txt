@@ -113,3 +113,18 @@ D:\vào cop nhạc\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-0
 C:\Users\Nico\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-001\HVNFollower\bin\Debug\HVN Follower.exe.config
 C:\Users\Nico\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-001\HVNFollower\bin\Debug\HtmlAgilityPack.dll
 C:\Users\Nico\Downloads\HVNFollower-20191224T112215Z-001-20191225T055441Z-001\HVNFollower\obj\Debug\HVNFollower.Export.resources
+D:\Downloads\HVNFollower-master\HVNFollower\bin\Debug\HVN Follower.exe.config
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\HVN Follower.exe
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\HVN Follower.pdb
+D:\Downloads\HVNFollower-master\HVNFollower\bin\Debug\HVN Follower.exe
+D:\Downloads\HVNFollower-master\HVNFollower\bin\Debug\HVN Follower.pdb
+D:\Downloads\HVNFollower-master\HVNFollower\bin\Debug\HtmlAgilityPack.dll
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\ResolveAssemblyReference.cache
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\HVNFollower.AddThisChuThot.resources
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\HVNFollower.DsChuThot.resources
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\HVNFollower.Export.resources
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\HVNFollower.Form1.resources
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\HVNFollower.Properties.Resources.resources
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\HVNFollower.Settings.resources
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\HVNFollower.ThongBao.resources
+D:\Downloads\HVNFollower-master\HVNFollower\obj\Debug\HVNFollower.csproj.GenerateResource.Cache
